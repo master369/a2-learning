@@ -1,0 +1,24 @@
+﻿<div class="main">
+	<section class="category-list">
+		<header>
+			<h1 class="text-center link" ui-sref="shell.todo()">Categories list</h1>
+		</header>
+		<section class="content">
+			<form name="categoryForm" method="POST" class="controls" novalidate>
+					<button class="btn btn-default" ng-click="vm.addPrimaryCategory()" ng-disabled="vm.categoryAddButtonDisabled()">Add category</button>
+					<input class="input" ng-minlength="1" ng-maxlength="30" name="categoryName" type="text" placeholder="new category title"
+						ng-model="vm.newCategoryItem" />
+			</form>
+			<p class="alert alert-danger" ng-show="categoryForm.categoryName.$error.minlength || categoryForm.categoryName.$error.maxlength">
+				The length must be in range 1 to 30!</p>
+			<hr />
+			<ul class="category_menu">
+				<li class="category_item" ng-repeat="data in vm.categories" ng-include="'app/pages/partials/category.html'" ng-class="{'label-blue': vm.categorySelected(data.id)}">
+				</li>
+			</ul>
+		</section>
+	</section>
+	<section class="todo-list">
+		<div ui-view></div>
+	</section>
+</div>

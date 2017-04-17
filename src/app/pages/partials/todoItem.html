@@ -1,0 +1,27 @@
+<section class="todolist_item" >
+	<section>{{index}}</section>
+	<section class="item_text" >
+		<span ng-class="{textisdone: item.isDone}">{{item.name}}</span>
+	</section>
+	<section>
+		<input
+		type="checkbox"
+		ng-model="item.isDone" />
+	</section>
+	<section>
+		<button class="btn btn-warning btn-sm"
+		ng-show="checkRoute()"
+		ui-sref="shell.details({todoId: item.id})"
+		>Edit
+		</button>
+		<button class="btn btn-warning btn-sm"
+		ng-hide="checkRoute()"
+		ui-sref="shell.categorywithtodo({id: $parent.$state.params.id, todoId: item.id})"
+		>Edit
+		</button>
+		<button class="btn btn-danger btn-sm"
+		ng-click="deleteTodo({item: item})">
+		<i class="glyphicon  glyphicon-remove"></i>
+		</button>
+	</section>
+</section>

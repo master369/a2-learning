@@ -1,0 +1,18 @@
+<section class="todolist">
+	<header>
+		<h1 class="text-center link" ui-sref="shell.todo()">Todo list</h1>
+	</header>
+	<section>
+		<form name="todoForm" method="POST" class="controls" novalidate>
+			<input class="input" type="text" ng-minlength="1" ng-maxlength="30" name="todoInput" placeholder="new item title" ng-model="vm.data" />
+			<button class="btn btn-default" ng-click="vm.addTodo(vm.data)" ng-disabled="vm.isAddButtonDisabled()">Add todo</button>
+		</form>
+			<p class="alert alert-danger" ng-show="todoForm.todoInput.$error.minlength || todoForm.todoInput.$error.maxlength">
+				The length must be in range 1 to 30!</p>
+		<hr />
+		<section class="todolist_content">
+			<todoitem ng-repeat="item in vm.todos | filter: { title: textFilter} track by $index" index="{{::$index+1}}" item="item"
+				delete-todo="vm.deleteTodo(item)"></todoitem>
+		</section>
+	</section>
+</section>

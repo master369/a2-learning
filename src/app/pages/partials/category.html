@@ -1,0 +1,20 @@
+<div >
+	<label>
+		 <input class='hide' type="checkbox" name="subCategorieInput" ng-model="checked"/>
+	<i ng-show="checked" class="glyphicon glyphicon-chevron-down"></i>
+	<i ng-hide="checked" class="glyphicon glyphicon-chevron-right"></i>
+	</label>
+	<span class="link" ui-sref="shell.category({id: data.id})">{{data.name}}</span>
+	<div ng-show="vm.changeButton()">
+		<button class="btn btn-success" ng-click="vm.add(data)" ng-disabled="vm.categoryAddButtonDisabled()">+</button>
+		<button class="btn btn-warning" ng-click="vm.editCategory(data)" ng-disabled="vm.categoryAddButtonDisabled()">E</button>
+		<button class="btn btn-danger" ng-click="vm.delete(data)">X</button>
+	</div>
+	<div ng-hide="vm.changeButton()">
+		<button class="btn btn-default" ng-click="vm.addTaskToCategory(data.id)" ui-sref="shell.todo()"><----</button>
+	</div>
+	<ul ng-show="checked" class="category_menu">
+		<li ng-repeat="data in data.subCategories" ng-include="'app/pages/partials/category.html'" class="category_item" ng-class="{'label-blue': vm.categorySelected(data.id)}">
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,26 @@
+<header>
+	<h1 class="text-center">Todo Details</h1>
+</header>
+<div class="todo-edit">
+	<form name="editTaskForm" method="POST" novalidate>
+		<div>
+			<label>Name:
+			<input class="input" name="editNameInput" ng-minlength="1" ng-maxlength="30" ng-model="vm.item.name"/>
+            </label>
+			<p class="alert alert-danger" ng-show="editTaskForm.editNameInput.$error.minlength || editTaskForm.editNameInput.$error.maxlength">
+				The length must be in range 1 to 30!</p>
+		</div>
+		<div>
+			<label>Description:
+			<textarea class="input" ng-model="vm.item.description">{{vm.item.description}}</textarea>
+            </label>
+		</div>
+		<div>
+			<label>isDone:
+			<input class="input" type="checkbox"  ng-model="vm.item.isDone" />
+            </label>
+		</div>
+		<input type="submit" class="btn btn-success" value="Save" ng-click="vm.submit(vm.item)" ui-sref="shell.todo()" />
+		<button type="button" class="btn btn-warning" ui-sref="shell.todo()">Back to list</button>
+	</form>
+</div>
